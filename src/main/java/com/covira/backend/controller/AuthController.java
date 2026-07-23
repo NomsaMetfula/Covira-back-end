@@ -24,8 +24,14 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest request) {
-        return authService.login(request);
+    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+
+        try {
+            return ResponseEntity.ok(authService.login(request));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
     }
     @Autowired
     private EmailService emailService;

@@ -32,4 +32,35 @@ public class EmailService {
 
         mailSender.send(message);
     }
+    public void sendWelcomeEmail(String toEmail, String fullName) {
+
+        SimpleMailMessage message = new SimpleMailMessage();
+
+        message.setTo(toEmail);
+        message.setSubject("🎉 Welcome to Covira");
+
+        message.setText(
+                "Hello " + fullName + ",\n\n" +
+
+                        "Welcome to Covira!\n\n" +
+
+                        "Your employer account has been created successfully.\n\n" +
+
+                        "You can now:\n" +
+                        "• Create video interviews\n" +
+                        "• Manage interview questions\n" +
+                        "• Invite candidates\n" +
+                        "• Review candidate responses\n\n" +
+
+                        "Login here:\n" +
+                        "http://localhost:5173/login\n\n" +
+
+                        "Thank you for choosing Covira.\n\n" +
+
+                        "Regards,\n" +
+                        "The Covira Team"
+        );
+
+        mailSender.send(message);
+    }
 }

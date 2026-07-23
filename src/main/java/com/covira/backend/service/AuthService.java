@@ -53,6 +53,19 @@ public class AuthService {
 
         userRepository.save(user);
 
+        try {
+
+            emailService.sendWelcomeEmail(
+                    user.getEmail(),
+                    user.getFullName()
+            );
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
         return "User registered successfully.";
     }
 
