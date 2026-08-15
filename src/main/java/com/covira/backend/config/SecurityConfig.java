@@ -24,7 +24,11 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
 
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .cors(cors ->
+                        cors.configurationSource(
+                                corsConfigurationSource()
+                        )
+                )
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
@@ -33,6 +37,7 @@ public class SecurityConfig {
                                 "/api/interviews/public/**",
                                 "/api/candidates/public/**"
                         ).permitAll()
+
                         .anyRequest().permitAll()
                 )
 
@@ -49,7 +54,9 @@ public class SecurityConfig {
                 new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:5173")
+                List.of(
+                        "http://localhost:5173"
+                )
         );
 
         configuration.setAllowedMethods(
